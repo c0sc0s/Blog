@@ -8,15 +8,8 @@ cover:
   square: "https://www.apple.com.cn/newsroom/images/product/apps/standard/Apple-Freeform-hero_big.jpg.large_2x.jpg"
   alt: "cover"
 tags: ["cosine"]
-theme: "light"
+theme: "dark"
 featured: true
----
-
----
-
-title: 把二十岁刻入生命的脊梁
-date: 2022-11-11
-
 ---
 
 2022 年 11 月 11 日，深夜 11 点 23 分。

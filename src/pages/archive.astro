@@ -1,8 +1,8 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ArchivePostList from "../layouts/ArchivePostList.astro";
-const allPosts = await Astro.glob("./posts/*.md");
-const tags = ["前端", "后端", "Algo", "OS", "DB", "Net", "生活"];
+const allPosts = await Astro.glob("./posts/**/*.md");
+const tags = ["生活","前端", "后端", "算法", "网络"];
 const posts = [];
 
 tags.forEach((tag) => {
