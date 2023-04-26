@@ -98,8 +98,6 @@ ReactElement 是我接触 React 时了解的第一个概念，他是 React 中�
 
 让我们来研究一下 React 源码中，React Element 是怎么样的，
 
-<a href="https://github.com/facebook/react/blob/main/packages/react/src/ReactElement.js#L148" target="_blank"> 源码地址 </a>
-
 ```ts
 const ReactElement = (
   type: Type,
@@ -119,8 +117,35 @@ const ReactElement = (
 
 这是一段相当简单的 ts 代码，我们先忽略里面的一些类型不谈，这段代码实际上就是把我们传入的参数组装到一个对象身上，然后添加了一个 `$$typeof` 属性作为一个印记。
 
-在 React 的源码中，REACT_ELEMENT_TYPE
-比如：
+**对属性的解读**
+
+- **&&typeof** :
+
+  在 React 源码中，&&typeof 字段的值是一个**常量** `REACT_ELEMENT_TYPE`， 它的值为 `Symbol.for('react.element')`。它的作用是用于判断一个对象是否为 React 元素（React element）
+
+- **key**
+
+  这个字段大家肯定都用过，作用发生在 diff 算法中，具体细节到 diff 算法再展开，这里需要理解的是他的作用帮助 react 区分变化从而提高性能
+
+- **type**
+
+  在 React 中，type 字段表示组件的类型，可以是一个**字符串**（表示 HTML 元素名）或一个**函数**（表示自定义组件）。
+
+- **ref**
+
+  表示对元素的引用，用于在组件内部访问 DOM 元素或组件实例等对象。
+
+- **props**
+
+  表示组件的属性，是一个包含所有属性和值的对象，包括组件的事件处理函数、**子元素等信息**。
+
+- **\_owner**
+
+  表示**创建当前元素**，其实就是父组件。
+
+## jsx 函数
+
+前面提到，在 react17 之后，jsx 经过 babel 转译后，从 **React.reactElement** 方法转成了 **jsx** 方法，
 
 ```js
 const App = () => {
@@ -128,10 +153,58 @@ const App = () => {
 };
 ```
 
-他的本质是：
-
 ```js
 const App = () => {
   return jsx("div", { children: "hello" });
 };
 ```
+
+该方法从 `"react/jsx-runtime"` 包导入;（该包只能 Babel 转译时自动导入，不允许开发者自己导入）
+
+他的本质很简单，是对 传入的参数做了一些处理，然后**返回**一个 **ReactElement 对象**
+
+把它的核心抽取出来
+
+```js
+export const jsx = (type: ElementType, config: any, maybeKey: any) => {
+  let key: Key = null;
+  const props: Props = {};
+  let ref: Ref = null;
+
+  for (const prop of Object.keys(config)) {
+    const val = config[prop];
+
+    if (prop === "key") {
+      if (val !== undefined) {
+        key = "" + val;
+      }
+      continue;
+    }
+    if (prop === "ref") {
+      if (val !== undefined) {
+        ref = val;
+      }
+      continue;
+    }
+    props[prop] = val;
+  }
+
+  return ReactElement(type, key, ref, ReactCurrentOwner.current, props);
+};
+```
+
+大致流程如上，他的作用非常简单，就是把传入的参数进行了分拣，然后返回了一个 ReactElement, 嗯， 就只是如此简单.
+
+## 回顾
+
+至此，我们已经从源码层面认识了 jsx 函数 和 ReactElement 函数， 其中 jsx 是 React17 后提供的方法，作用是返回一个 ReactElement 对象, 而 ReactElement 不过是返回一个具有特定字段的普通对象而已。
+
+## 参考资料:
+
+相关源码：
+
+<a href="https://github.com/facebook/react/blob/main/packages/react/src/ReactElement.js#L148" target="_blank"> ReactElement </a>
+
+<a href="https://github.com/facebook/react/blob/main/packages/shared/ReactSymbols.js#L15" target="_blank"> ReactSymbols</a>
+
+<a href="https://github.com/facebook/react/blob/main/packages/react/src/ReactElement.js#L210" target="_blank"> Jsx </a>
