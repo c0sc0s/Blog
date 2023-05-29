@@ -1,8 +1,8 @@
 ---
 layout: "../../../layouts/MarkdownPost.astro"
 title: "前端历史"
-pubDate: 2023-4-26
-description: "小说男主JS：从诞生到翻身"
+pubDate: 2023-5-29
+description: "史上第一个网页"
 author: "cos"
 cover:
   url: "https://s2.loli.net/2023/05/29/5MvS3lKmojU7HQO.jpg?resize=true&w=1920"
