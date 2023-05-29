@@ -12,10 +12,6 @@ tags: ["浏览器"]
 featured: true
 ---
 
----
-
-## theme: devui-blue
-
 **JS 为什么有很多让人抓狂的特性？**
 
 <p align="center"><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2b58491b77ad48d2b2c75a4ca1ee9ca3~tplv-k3u1fbpfcp-zoom-1.image" alt="让人奔溃的JS |w"></p>
