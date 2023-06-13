@@ -39,14 +39,6 @@
     </style>
   </head>
   <body>
-    <!-- 动画 -->
-    <div class="ball"></div>
-    <script>
-      // 这里使用 JS 占用线程，明显可以看到动画卡顿
-      setInterval(() => {
-        const cur = new Date();
-        while (new Date() - cur < 500) {}
-      }, 600);
-    </script>
+    <script src="./demo.js"></script>
   </body>
 </html>
