@@ -31,3 +31,4 @@ JSX -> FiberNode -> DOM ✅
 - React Element
 - FiberNode
 - DOM Element
+# Blog
