@@ -22,7 +22,7 @@ const dateFormated = formatDate(pubDate);
   <body
     class:list={[
       "page-article",
-      { "theme-dark": frontmatter.theme === "dark" },
+      { "theme-dark": frontmatter.theme !== "light" },
     ]}
   >
     <Header />
@@ -76,14 +76,14 @@ const dateFormated = formatDate(pubDate);
           <div class="component">
             <div class="component-content">
               <div class="article-copyright">
-                <p class="content">end - {formatDate(pubDate)}</p>
+                <p style="margin-left: 1rem;">End.</p>
               </div>
             </div>
           </div>
         </article>
       </section>
     </main>
-    <Footer />
+    <!-- <Footer /> -->
     <script is:inline>
       var script = document.createElement("script");
       script.src = "/static/js/initPost.js";
