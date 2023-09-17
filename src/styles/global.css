@@ -3049,7 +3049,8 @@ html.js .tile.large-loaded .image {
 
 .tile.tile-hero {
   flex-direction: row;
-  width: 100%
+  width: 100%;
+  max-height: 25vh;
 }
 
 .tile.tile-hero .tile__headline {
