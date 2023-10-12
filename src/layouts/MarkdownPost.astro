@@ -7,7 +7,7 @@ import { formatDate } from "../utils";
 import { SITE_LANG } from "../consts";
 const { frontmatter } = Astro.props;
 const type = frontmatter.tags[0];
-const { pubDate, title, description, featured } = frontmatter;
+const { pubDate, title, description = "", featured } = frontmatter;
 const dateFormated = formatDate(pubDate);
 ---
 
