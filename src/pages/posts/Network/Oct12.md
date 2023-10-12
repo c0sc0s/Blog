@@ -2,7 +2,7 @@
 layout: "../../../layouts/MarkdownPost.astro"
 title: localhost 引发的惨案
 pubDate: 2023-10-12
-# description: 着俩居然有区别？
+description: 着俩居然有区别？
 author: "cos"
 cover:
   url: "https://pic.imgdb.cn/item/65071a1e661c6c8e546b59b6.jpg"
